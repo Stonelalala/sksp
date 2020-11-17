@@ -1,0 +1,45 @@
+<!--pages/category/index.wxml-->
+<view style="margin-bottom:50px;" class="bg-white">
+    <cu-custom bgColor="bg-black" isCustom="{{false}}">
+        <view slot="content">个人中心</view>
+    </cu-custom>
+    
+    <view class="padding bg-black">
+        <view class="flex">
+          <view class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatar}});">
+          </view>
+          <view class="text-xl margin-left-xl margin-top-xl">
+            {{userInfo.nickname}}
+          </view>
+        </view>
+    </view>
+</view>
+<view class="cu-bar tabbar bg-white foot">
+      <view class="action">
+        <navigator url="/pages/index/index" open-type="redirect">
+          <view class="cuIcon-cu-image">
+                <image src="/images/tabbar/basics.png"></image>
+            </view>
+            <view class="text-gray">首页</view>
+        </navigator>
+      </view>
+      <view class="action">
+        <navigator url="/pages/category/index" open-type="redirect">
+              <view class="cuIcon-cu-image">
+                <image src="/images/tabbar/component.png"></image>
+              </view>
+              <view class="text-gray">分类</view>
+            </navigator>
+      </view>
+      <view class="action">
+        <navigator url="/pages/user/index" open-type="redirect">
+          <view class="cuIcon-cu-image">
+              <image src="/images/tabbar/about_cur.png"></image>
+              <view class="cu-tag badge"></view>
+          </view>
+          <view class="text-shit">我的</view>
+        </navigator>
+    </view>
+</view>
+
+<authorize bind:onLoadFun='onLoadFun' isGoIndex='{{isGoIndex}}' iShidden="{{iShidden}}" isAuto="{{isAuto}}"></authorize>

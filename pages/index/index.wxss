@@ -1,0 +1,8 @@
+/* pages/index/index.wxss */
+
+.text-spacing{
+  letter-spacing: 2px;
+}
+.flex-space-between{
+  justify-content: space-between;
+}

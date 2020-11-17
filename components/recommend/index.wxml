@@ -1,0 +1,18 @@
+<view class='recommend'>
+   <view class=' padding text-center shadow-warp bg-white'>
+      <text class='name'>热门推荐</text>
+   </view>
+   <view class='recommendList acea-row row-between-wrapper margin-top-lg'>
+      <view class='item' wx:for="{{host_product}}" wx:key='index' bindtap="goDetail" data-items='{{item}}'>
+         <view class='pictrue'>
+            <image src='{{item.image}}'></image>
+            <text class="pictrue_log_big pictrue_log_class" wx:if="{{item.activity && item.activity.type ==='1'}}">秒杀</text>
+            <text class="pictrue_log_big pictrue_log_class" wx:if="{{item.activity && item.activity.type === '2'}}">砍价</text>
+            <text class="pictrue_log_big pictrue_log_class" wx:if="{{item.activity && item.activity.type === '3'}}">拼团</text>
+         </view>
+         <view class='name line1'>{{item.store_name}}</view>
+         <view class='money font-color' wx:if="{{isShowPrice}}">￥<text class='num'>{{item.price}}</text></view>
+         <view class='money font-color' wx:else><text class='num'>价格面议</text></view>
+      </view>
+   </view>
+</view>

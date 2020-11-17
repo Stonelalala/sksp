@@ -1,0 +1,65 @@
+<view style="margin-bottom:50px;">
+  <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{4}}" wx:key>
+    <image src="https://image.weilanwl.com/img/4x3-{{index+1}}.jpg" mode='aspectFill'></image>
+  </swiper-item>
+</swiper>
+<view class="VerticalBox" >
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-shit cur':''}}" wx:for="{{productList}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.cate_name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 500rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{productList}}" wx:key id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-shit'></text> {{item.cate_name}} </view>
+      </view>
+      <view class="cu-list menu-avatar" >
+        <view class="cu-item " wx:for="{{item.children}}" bindtap="toList" data-id="{{item.id}}" data-title="{{item.cate_name}}">
+        
+            <view class="cu-avatar round lg" style="background-image:url({{item.pic}});"></view>
+            <view class="content">
+              <view class="text-shit">{{item.cate_name}}</view>
+            </view>
+            <view class="action">
+              <view class="cuIcon-right lg text-shit"></view>
+            </view>
+     
+        </view>
+        
+      </view>
+
+    </view>
+  </scroll-view>
+</view>
+</view>
+
+<view class="cu-bar tabbar bg-white foot">
+      <view class="action">
+        <navigator url="/pages/index/index" open-type="redirect">
+          <view class="cuIcon-cu-image">
+                <image src="/images/tabbar/basics.png"></image>
+            </view>
+            <view class="text-gray">首页</view>
+        </navigator>
+      </view>
+      <view class="action">
+        <navigator url="/pages/category/index" open-type="redirect">
+              <view class="cuIcon-cu-image">
+                <image src="/images/tabbar/component_cur.png"></image>
+              </view>
+              <view class="text-shit">分类</view>
+            </navigator>
+      </view>
+      <view class="action">
+        <navigator url="/pages/user/index" open-type="redirect">
+          <view class="cuIcon-cu-image">
+              <image src="/images/tabbar/about.png"></image>
+              <view class="cu-tag badge"></view>
+          </view>
+          <view class="text-gray">我的</view>
+        </navigator>
+    </view>
+</view>

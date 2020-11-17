@@ -1,0 +1,143 @@
+<wxs module="filter" src="./../../utils/helperFunc.wxs"></wxs>
+<wxs module="priceM" src="../../app.wxs"></wxs>
+<view class='navbar {{parameter.class}}' style='height:{{navH}}rpx;opacity:{{opacity}}'>
+  <view class='navbarH' style='height:{{navH}}rpx;'>
+    <view class='navbarCon acea-row row-center-wrapper'>
+      <view class="header acea-row row-center-wrapper">
+        <view class="item {{navActive === index ? 'on' : ''}}" wx:for="{{navList}}" wx:key='index' bindtap="tap" data-index="{{index}}" data-id='past{{index}}'>
+          {{ item }}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='cuIcon-back con-xiangzuo' style="top:{{navH/2}}rpx" bindtap='returns'></view>
+<!-- <view style="height:{{navH+20}}rpx;" wx:if="{{scrollY>200}}"></view> -->
+<!-- style='height:{{scrollY>200?(height+2*navH+20):(height+navH)}}rpx;' -->
+<view class='product-con'>
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y='true' scroll-with-animation="true" style='height:{{height}}px;' bindscroll="scroll">
+    <view id="past0">
+      <productConSwiper imgUrls="{{storeInfo.slider_image}}" videoline="{{storeInfo.video_link}}"></productConSwiper>
+      
+      <view class='wrapper'>
+        <view class='d-price'>
+          <view class='money text-shit' wx:if="{{isShowPrice}}">
+            <text>会员价:</text>￥<text class='num' style="font-size:38rpx;">{{priceM.getPrice(storeInfo.price)}}</text>{{filter.showUnit(storeInfo.unit_name)}}
+            <!-- <text class='vip-money' wx:if="{{storeInfo.vip_price && storeInfo.vip_price > 0 && is_promoter == 1}}">￥{{storeInfo.vip_price}}</text>
+            <image wx:if="{{storeInfo.vip_price && storeInfo.vip_price > 0 && is_promoter == 1}}" src="/images/vip.png"></image> -->
+            <view class="old-price " style="color:black;padding: 3rpx 0 5rpx 0;"> <text style="color:black;">原 价:</text>  <text class="origin-price"> <text class="origin-inner" style="color:black;">￥{{storeInfo.ot_price}}{{filter.showUnit(storeInfo.unit_name)}}</text> </text> </view>
+            <view style="font-size:12px;color:#b5b5b5;font-weight:500;" wx:if="{{storeInfo.unit_name == '副'}}">所示价格含材料、加工费、包装费、不含运费</view>
+            <view style="font-size:12px;color:#b5b5b5;font-weight:500;"  wx:else>所示价格不包含加工、包装、运费等</view>
+          </view>
+          <view class='money text-shit' wx:else>
+            <text class='num'>价格面议</text>
+          </view>
+          <view class='cuIcon-share font-xl margin' bindtap='listenerActionSheet'></view>
+        </view>
+        <view class='introduce' style="font-size: 32rpx;font-weight: 500; margin: 10rpx 0 0 10rpx;padding: 6rpx 20rpx;border-top: 1px dashed #dedede;">{{storeInfo.store_name}}</view>
+        <view class='d-1' style="margin-top:5rpx;height:25rpx;">
+          <view>库存:{{storeInfo.stock}}{{storeInfo.unit_name}}</view>
+          <view>销量:{{storeInfo.fsales}}{{storeInfo.unit_name}}</view>
+        </view>
+        <view class='d-2' wx:if="{{storeInfo.lengths}}" style="height: 50rpx;margin-top: 10rpx;">
+          <view style="font-size:24rpx;">最大可用尺寸：
+            <text class='atterTxt'>{{filter.notPoint(storeInfo.lengths)+'*'+filter.notPoint(storeInfo.widths)+'*'+filter.notPoint(storeInfo.thicks)+'mm'}} {{priceM.getArea(storeInfo.lengths,storeInfo.widths)}}m²</text>
+          </view>
+          
+        </view>
+        <view class='d-3' >
+          <view wx:if="{{filterCate.length}}">
+            <view style="font-size:24rpx;">适用部位：
+              <view class="filter" wx:for="{{filterCate}}" wx:key="cate_name">
+                {{item.cate_name}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+
+      
+
+
+     
+ 
+    </view>
+    <view wx:if="{{storeInfo.panorama_link != ''}}" class='product-intro' id="past2" bindtap="openPanoramaPage">
+      <view class='title'>全景图</view>
+        <view class='panorama_cover' style='background-image: url("{{storeInfo.panorama_cover}}");background-size:100%;'>
+        <image src="../../images/stop.png" class='panorama-play'></image>
+        </view>
+    </view>
+    <view class='product-intro' id="past1">
+      <view class='title'>产品介绍</view>
+      <view class='conter'>
+        <template is="wxParse" data="{{wxParseData:description.nodes}}" />
+      </view>
+    </view>
+    <view class="superior" wx:if="{{good_list.length}}" id="past2" >
+      <view class="title acea-row row-center-wrapper">
+        <image src="/images/ling.png"></image>
+        <view class="titleTxt">优品推荐</view>
+        <image src="/images/ling.png"></image>
+      </view>
+      <view class="slider-banner banner">
+        <swiper indicator-dots="true" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}" indicator-color="#999" indicator-active-color="#e93323" style="height:{{clientHeight+'px'}}">
+          <swiper-item wx:for="{{good_list}}" wx:for-item='item' wx:for-index='indexw' wx:key='index'>
+            <view class="list acea-row row-middle" id="list{{indexw}}">
+              <view class="item" wx:for="{{item.list}}" wx:key='index' wx:for-item='val' bindtap="goDetail" data-items='{{val}}'>
+                <view class="pictrue">
+                  <image src="{{val.image}}"></image>
+                  <text class="pictrue_log pictrue_log_class" wx:if="{{val.activity && val.activity.type ==='1'}}">秒杀</text>
+                  <text class="pictrue_log pictrue_log_class" wx:if="{{val.activity && val.activity.type === '2'}}">砍价</text>
+                  <text class="pictrue_log pictrue_log_class" wx:if="{{val.activity && val.activity.type === '3'}}">拼团</text>
+                </view>
+                <view class="name line1">{{val.store_name}}</view>
+                <view class="money text-shit" wx:if="{{isShowPrice}}">¥{{filter.notPoint(val.price)}}</view>
+                <view class="money text-shit" wx:else>价格面议</view>
+              </view>
+            </view>
+          </swiper-item>
+          <view class="swiper-pagination" slot="pagination"></view>
+        </swiper>
+      </view>
+    </view>
+    <view id="bottom"></view>
+  </scroll-view>
+</view>
+<!-- 分享按钮 -->
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="listenerActionSheet" class='pro-wrapper' hover-class='none'>
+  <action-sheet-item hover-class='none'>
+    <button open-type="share" class='contact' hover-class='none'>
+      <view class='iconn'></view>
+      发送给朋友
+    </button>
+    <button class='contact' bindtap='goPoster' hover-class='none'>
+      <view class='iconn iconn1'></view>
+      生成海报
+    </button>
+     <button class='contact' bindtap='drawPic' hover-class='none'>
+      <view class='iconn iconn2'></view>
+      产品详情
+    </button>
+  </action-sheet-item>
+</action-sheet>
+<!-- 海报展示 -->
+<view class='poster-pop' wx:if="{{posterImageStatus}}">
+  <image src='/images/poster-close.png' class='close' bindtap='posterImageClose'></image>
+  <view style="height:600rpx; overflow:hidden;">
+    <image src='{{posterImage}}' mode="widthFix" ></image>
+  </view>
+  
+  <view class='save-poster' bindtap='savePosterPath'>保存到手机</view>
+</view>
+<view class='mask' wx:if="{{posterImageStatus}}"></view>
+<canvas class="canvas" canvas-id='myCanvas' wx:if="{{canvasStatus}}"></canvas>
+<!-- 组件 -->
+<product-window iSplus='{{iSplus}}' isShowPrice="{{isShowPrice}}" attribute='{{attribute}}' unitName="{{storeInfo.unit_name}}" productAttr="{{productAttr}}" productSelect="{{productSelect}}" bind:myevent="onMyEvent" bind:ChangeAttr="ChangeAttr" bind:ChangeCartNum="ChangeCartNum" id='product-window' bind:iptCartNum="iptCartNum"></product-window>
+<coupon-list-window coupon='{{coupon}}' bind:ChangCouponsClone="ChangCouponsClone" bind:ChangCoupons="ChangCoupons"></coupon-list-window>
+<authorize bind:onLoadFun="onLoadFun" isAuto="{{isAuto}}" iShidden="{{iShidden}}"  isGoIndex='{{isGoIndex}}'></authorize>
+<authorize-phone displays="{{displays}}"  isAuto="{{isAuto}}" isGoIndex='{{isGoIndex}}'></authorize-phone>
+<!-- html转wxml -->
+<import src="/wxParse/wxParse.wxml" />
+<painter style="position: absolute; top: -9999rpx;" palette="{{imgDraw}}" bind:imgOK="onImgOK" />

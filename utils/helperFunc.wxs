@@ -1,0 +1,17 @@
+var filter = {
+  floatToInt:function(value){
+    return parseInt(value);
+  },
+  showUnit:function(value){
+    if(value != "") return '/' + value;
+    return value;
+  },
+  notPoint:function(value){
+    return (value*1).toFixed(0);
+  }
+}
+module.exports = {
+  floatToInt:filter.floatToInt,
+  showUnit:filter.showUnit,
+  notPoint:filter.notPoint,
+}

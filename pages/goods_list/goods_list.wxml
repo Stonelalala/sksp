@@ -1,0 +1,159 @@
+<!-- <wxs src="../../utils/method.wxs" module="tools"/> -->
+<wxs module="filter" src="./../../utils/helperFunc.wxs"></wxs>
+<wxs module="priceM" src="../../app.wxs"></wxs>
+<cu-custom bgColor="bg-white" isBack="{{true}}" isCustom="{{false}}">
+        <view slot="content">商品列表</view>
+</cu-custom>
+<view style="{{displays=='none'?'overflow-y:scroll':'overflow-y:hidden;'}}">
+  <view class="mask-box" style="display:{{displays}}" bindtap="selectStatus"></view>
+  <navbar parameter='{{parameter}}'></navbar>
+  <authorize bind:onLoadFun="onLoadFun"></authorize>
+  <view class='productList'>
+    <view class='search bg-white acea-row row-between-wrapper'>
+      <view class='acea-row row-between-wrapper input bg-grey light round'>
+        <text class='cuIcon-search text-gray'></text>
+        <!-- <form bindsubmit="searchSubmit"> -->
+          <input placeholder='搜索商品信息' class="text-black" placeholder-class='placeholder' placeholder='搜索商品名称' placeholder-class='placeholder' bindconfirm="searchSubmit" confirm-type='search' name="search" value='{{where.keyword}}'></input>
+        <!-- </form> -->
+      </view>
+      <view class=' cuIcon-lg text-shit {{is_switch==true?"cuIcon-cascades":"cuIcon-list"}} padding-right-sm' bindtap='Changswitch'></view>
+    </view>
+    <view class='nav acea-row row-middle' style='top:{{navH}}rpx;margin-top:86rpx'>
+      <view class='item {{title ? "text-shit":""}}' bindtap='set_where' data-type='1'>{{title ? title:'默认'}}</view>
+      <view class='item' bindtap='set_where' data-type='2'>
+        价格
+        <image wx:if="{{price==1}}" src='/images/up.png'></image>
+        <image wx:elif="{{price==2}}" src='/images/down.png'></image>
+        <image wx:else src='/images/horn.png'></image>
+      </view>
+      <!-- <view class='item' bindtap='set_where' data-type='3'>
+      销量
+      <image wx:if="{{stock==1}}" src='/images/up.png'></image>
+      <image wx:elif="{{stock==2}}" src='/images/down.png'></image>
+      <image wx:else src='/images/horn.png'></image>
+    </view> -->
+      <!-- down -->
+      <view class='item {{nows ? "text-shit":""}}' bindtap='set_where' data-type='4'>新品</view>
+      <view class='item' bindtap='selectStatus'>
+        筛选
+        <image src='/images/select_icon.png' class="select-icon"></image>
+      </view>
+    </view>
+
+
+    <view class="select-box" style="display:{{displays}}">
+      <view class="select-header bak-color font-size-14">
+        筛选
+      </view>
+ 
+        <scroll-view scroll-y="true"  class="select-content" style="height:{{scrollHeight}}px">
+
+          <block wx:for="{{selectList}}" wx:key="id" wx:if="{{selectList.length>0}}" wx:for-index="index">
+            <view class="select-item font-size-16">
+              <view class="item-title">
+                {{item.cate_name}}
+              </view>
+              <view class="item-content container-list">
+                <view class="sub-item {{subItem.checked?'sub-active':''}}" wx:for="{{item.filterChildren}}" wx:key="id"  data-index="{{index}}"  data-subindex="{{subIndex}}"
+                catchtap='selectValue' wx:for-item="subItem"  wx:for-index="subIndex" >
+                <!-- {{subItem.id}}
+                {{tools.indexOf(filterArr,subItem.id)}} -->
+                {{subItem.cate_name}}
+                </view>
+              </view>
+            </view>
+          </block>
+
+       
+
+          <view class="select-item">
+            <view class="item-title">
+              规格
+            </view>
+            <view class="item-input container-list">
+              <text class="price-space" >长度:</text>
+              <input placeholder='mm' placeholder-class="center" bindblur='inputValue' 
+              value='{{where.floorLength}}' type="number" class="input-size" data-type="floorLength"></input>
+              <text  class="price-space">至</text>
+              <input placeholder='mm' placeholder-class="center" bindblur='inputValue' 
+              value='{{where.highestLength}}' type="number" class="input-size"  data-type="highestLength"></input>
+            </view>
+              <view class="item-input container-list">
+              <text class="price-space" >宽度:</text>
+              <input placeholder='mm' placeholder-class="center" bindblur='inputValue' 
+              value='{{where.floorWidths}}' type="number" class="input-size" data-type="floorWidths"></input>
+              <text  class="price-space">至</text>
+              <input placeholder='mm' placeholder-class="center" bindblur='inputValue' 
+              value='{{where.highestWidths}}' type="number" class="input-size" data-type="highestWidths"></input>
+            </view>
+          </view>
+   <view class="select-item">
+            <view class="item-title">
+              价格
+            </view>
+            <view class="item-input container-list">
+              <input placeholder='最低价' placeholder-class="center" bindblur='inputValue' value='{{where.floorPrice}}' type="number" class="input-price" data-type="floorPrice"></input>
+              <text decode="true" class="price-space">&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;&nbsp;</text>
+              <input placeholder='最高价' placeholder-class="center" bindblur='inputValue' value='{{where.highestPrice}}' type="number" class="input-price" data-type="highestPrice"></input>
+            </view>
+          </view>
+        </scroll-view>
+      <view class="select-bottom ">
+        <view class="bottom-box clearfix font-size-18">
+          <view class="fl color-white" catchtap='selectButton' data-type='reset'>重置</view>
+          <view class="fr color-white" catchtap='selectButton' data-type='confirm'>确定</view>
+        </view>
+
+      </view>
+    </view>
+
+
+
+
+
+
+    <view class='list acea-row row-between-wrapper {{is_switch==true?"":"on"}}' style="padding-top:80px">
+      <block wx:for="{{productList}}" wx:key='index'>
+        <view class='item {{is_switch==true?"":"on"}}' bindtap="goDetail" data-items='{{item}}'>
+          <view class='pictrue {{is_switch==true?"":"on"}}'>
+            <image src='{{item.image}}' class='{{is_switch==true?"":"on"}}' mode="aspectFill"></image>
+            <text class='{{is_switch === true ? "pictrue_log_big" : "pictrue_log"}} pictrue_log_class' wx:if="{{item.activity && item.activity.type ==='1'}}">秒杀</text>
+            <text class='{{is_switch === true ? "pictrue_log_big" : "pictrue_log"}} pictrue_log_class' wx:if="{{item.activity && item.activity.type === '2'}}">砍价</text>
+            <text class='{{is_switch === true ? "pictrue_log_big" : "pictrue_log"}} pictrue_log_class' wx:if="{{item.activity && item.activity.type === '3'}}">拼团</text>
+          </view>
+          <view class='text {{is_switch==true?"":"on"}}'>
+            <view class='name line1'>{{item.store_name}}</view>
+            <view class='money text-shit {{is_switch==true?"":"on"}}' wx:if="{{isShowPrice}}">￥
+              <text class='num' >{{priceM.getPrice(item.price)}}</text>{{filter.showUnit(item.unit_name)}}
+            </view>
+            <view class='money text-shit {{is_switch==true?"":"on"}}' wx:else>
+              价格面议
+            </view>
+            <view class='vip acea-row row-between-wrapper {{is_switch==true?"":"on"}}'>
+              <view>已售{{item.sales}}件</view>
+              <view wx:if="{{is_promoter == 1}}">
+                <!-- <view class='vip-money' wx:if="{{item.vip_price && item.vip_price > 0}}">￥{{priceM.getPrice(item.vip_price)}}
+                  <image src='/images/vip.png'></image> -->
+                <!-- </view> -->
+              </view>
+              
+              
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- <navigator class='item {{is_switch==true?"":"on"}}' hover-class='none' wx:for='{{productList}}' url='/pages/goods_details/index?id={{item.id}}' wx:key='index'>
+         
+      </navigator> -->
+      <view class='loadingicon acea-row row-center-wrapper' wx:if='{{productList.length > 0}}'>
+        <text class='loading iconfont icon-jiazai' hidden='{{loading==false}}'></text>{{loadTitle}}
+      </view>
+    </view>
+  </view>
+  <view class='noCommodity' wx:if="{{productList.length==0 && where.page > 1}}">
+    <view class='pictrue'>
+      <image src='/images/noShopper.png' mode="widthFix"></image>
+    </view>
+    <recommend host_product="{{host_product}}"></recommend>
+  </view>
+</view>

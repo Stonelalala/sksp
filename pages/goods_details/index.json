@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "navbar": "/components/navbar/index",
+    "productConSwiper": "/components/productConSwiper/index",
+    "product-window":"/components/product-window/index",
+    "authorize": "/components/authorize/authorize",
+    "home": "/components/home/index",
+    "painter":"/components/painter/painter"
+  }
+}

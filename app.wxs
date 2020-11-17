@@ -1,0 +1,12 @@
+var getPrice = function(price){
+    price = price * 1;
+    return price.toFixed(0);
+}
+var getArea = function(length,width){
+  var total = (length * 1 / 1000) * (width * 1 / 1000);
+  return total.toFixed(2);
+}
+module.exports = {
+  getPrice:getPrice,
+  getArea:getArea
+}
