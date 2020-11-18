@@ -1,0 +1,18 @@
+<!--pages/case_detail/index.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}" isCustom="{{false}}">
+        <view slot="content"> <text class="text-bold">{{detail.title?detail.title:'案例详情'}}</text> </view>
+</cu-custom>
+
+<view class="margin-xs shadow  shadow-lg padding bg-white ">
+        <view class="flex flex-spb margin-bottom-xs">
+                <view>
+                        <view class="cu-tag radius">分类：{{detail.cart_name}}</view>
+                </view>
+                <view>
+                        <view class="cu-tag radius">发布时间：{{detail.add_time}}</view>
+                </view>
+        </view>
+        <template is="wxParse" data="{{wxParseData:description.nodes}}" />
+</view>
+<!-- html转wxml -->
+<import src="/wxParse/wxParse.wxml" />

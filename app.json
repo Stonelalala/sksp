@@ -4,7 +4,9 @@
     "pages/category/index",
     "pages/user/index",
     "pages/goods_list/goods_list",
-    "pages/goods_details/index"
+    "pages/goods_details/index",
+    "pages/case_list/index",
+    "pages/case_detail/index"
   ],
   "window":{
     "backgroundTextStyle":"light",

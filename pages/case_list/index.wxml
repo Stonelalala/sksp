@@ -1,0 +1,39 @@
+<!--pages/case_list/index.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}" isCustom="{{false}}">
+        <view slot="content">案例分享</view>
+</cu-custom>
+  <view class="cu-bar search bg-white" style="position:fixed;top:{{CustomBar + 'px'}};width:100%;z-index:999;">
+    <view class="action">
+      <picker bindchange="PickerChange" value="{{index}}" range-key="title" range="{{picker}}">
+        <view class="picker">
+          {{picker[index].title}} <text class="cuIcon-unfold lg text-gray"></text>
+        </view>
+		  </picker>
+    </view>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索图片、文章、视频" model:value="{{keyword}}" confirm-type="search"></input>
+    </view>
+    <view class="action">
+        <text class="text-shit" bindtap="search">搜索</text>   
+    </view>
+  </view>
+  <view>
+    <view class="cu-card article " style="margin-top:{{(CustomBar - 40)  + 'px'}}">
+      <view wx:for="{{article_list}}" data-id="{{item.id}}" bindtap="detail" class="cu-item shadow">
+        <view class="title">
+          <view class="text-cut">{{item.title}}</view>
+        </view>
+        <view class="content">
+          <image src="{{item.image_input[0]}}" mode="aspectFill"></image>
+          <view class="desc">
+            <view class="text-content"> {{item.synopsis}}</view>
+          
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+<view class="cu-load bg-grey {{isOver?'over':''}}"></view>
+

@@ -13,6 +13,9 @@
 .flex-spb{
   justify-content: space-between;
 }
+.flex-align-center{
+  align-items: center;
+}
 .text-shit{
   color:#aa9377;
 }

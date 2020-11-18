@@ -1,0 +1,3 @@
+/* pages/case_detail/index.wxss */
+
+@import "/wxParse/wxParse.wxss";

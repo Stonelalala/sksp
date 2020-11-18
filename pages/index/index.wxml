@@ -1,9 +1,19 @@
 <view style="margin-bottom:50px;margin-top:{{CustomBar + 'rpx'}}" class="bg-white">
     <cu-custom bgColor="bg-white" isCustom="{{false}}">
-        <view slot="content">背景墙微定制</view>
+        <view slot="content">
+            <view class="flex flex-align-center">
+                <view class="padding-right-xs">
+                    <image src="/images/logo-shit-1.png" style="width:50rpx;" class="margin-top-xs" mode="widthFix"></image>
+                </view>
+                <view class="text-shit">
+                    背景墙微定制
+                </view>
+        
+            </view>
+            
+        </view>
     </cu-custom>
     <view class="cu-bar search bg-white" style="position:fixed;top:{{CustomBar + 'px'}};width:100%;z-index:999;">
-        <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
         <view class="search-form round">
             <text class="cuIcon-search"></text>
             <input type="text" placeholder="搜索关键字" confirm-type="search"></input>
@@ -50,53 +60,66 @@
     <view class="bg-white padding-xs">
         <view class="flex ">
             <view class="flex-twice radius">
-                <view class="bg-img margin-top-xs margin-left-xs "
+                <navigator url="/pages/case_list/index?id=4">
+                    <view class="bg-img margin-top-xs margin-left-xs "
                     style="background-image: url('http://wechat.stonemei.com/6a24d202011131542019061.jpg');height: 307rpx;">
-                  
                 </view>
+                </navigator>
+                
             </view>
             <view class="flex-sub radius">
-                <view class="bg-img margin-top-xs margin-left-xs  margin-right-xs  flex align-end"
+                <navigator url="/pages/case_list/index?id=5">
+                    <view class="bg-img margin-top-xs margin-left-xs  margin-right-xs  flex align-end"
                     style="background-image: url('http://wechat.stonemei.com/fb75d202011131530354174.jpg');height: 307rpx;">
-                    
-                </view>
+                    </view>
+                </navigator>
+                
             </view>
         </view>
         <view class="flex ">
             <view class="flex-sub  radius">
-                <view class="bg-img margin-top-xs margin-left-xs flex align-end"
+                <navigator url="/pages/case_list/index?id=6">
+                   <view class="bg-img margin-top-xs margin-left-xs flex align-end"
                     style="background-image: url('http://wechat.stonemei.com/fe067202011131530344513.jpg');height: 407rpx;">
-                    
-                </view>
+                    </view> 
+                </navigator>
+                
             </view>
             <view class="flex-sub  radius">
-                <view class="bg-img margin-top-xs margin-left-xs  margin-right-xs  "
+                <navigator   url="/pages/case_list/index?id=7">
+                    <view class="bg-img margin-top-xs margin-left-xs  margin-right-xs  "
                     style="background-image: url('http://wechat.stonemei.com/c9566202011131530356859.jpg');height: 407rpx;">
-                   
-                </view>
-            </view>
 
+                </view>
+                </navigator>
+                
+            </view>
         </view>
         <view class="flex ">
             <view class="flex-sub  radius">
-                <view class="bg-img margin-top-xs margin-left-xs flex align-end"
+                <navigator url="/pages/case_list/index?id=8">
+                  <view class="bg-img margin-top-xs margin-left-xs flex align-end"
                     style="background-image: url('http://wechat.stonemei.com/a7d5f20201113153035616.jpg');height: 257rpx;">
-                    
-                </view>
+                </view>  
+                </navigator>
+                
             </view>
             <view class="flex-sub  radius">
-                <view class="bg-img margin-top-xs margin-left-xs flex align-end"
-                    style="background-image: url('http://wechat.stonemei.com/cf367202011131530348778.jpg');height: 257rpx;">
-                    
-                </view>
+                <navigator url="/pages/case_list/index?id=9">
+                    <view class="bg-img margin-top-xs margin-left-xs flex align-end"
+                        style="background-image: url('http://wechat.stonemei.com/cf367202011131530348778.jpg');height: 257rpx;">
+                    </view>
+                </navigator>
+                
             </view>
             <view class="flex-sub radius">
-                <view class="bg-img margin-top-xs margin-left-xs margin-right-xs flex align-end"
+                <navigator url="/pages/case_list/index?id=10">
+                      <view class="bg-img margin-top-xs margin-left-xs margin-right-xs flex align-end"
                     style="background-image: url('http://wechat.stonemei.com/bb8d8202011131530348240.jpg');height: 257rpx;">
-                    
-                </view>
+                    </view> 
+                </navigator>
+             
             </view>
-
         </view>
     </view>
     <view class="cu-bar bg-white">
@@ -112,142 +135,148 @@
     <view class="bg-white margin-left margin-bottom">
         品质与设计经过业主验证的精选背景墙
     </view>
-    <scroll-view scroll-x="true" scroll-y="false" enable-flex="ture" class="flex padding-right-sm" > 
+    <scroll-view scroll-x="true" scroll-y="false" enable-flex="ture" class="flex padding-right-sm">
         <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%" >
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-                <swiper-item wx:for="{{swiperList}}" wx:key>
-                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                </swiper-item>
-            </swiper>
+            <view style="width:100%">
+                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
+                    circular="true" autoplay="true" interval="5000" duration="500">
+                    <swiper-item wx:for="{{swiperList}}" wx:key>
+                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                    </swiper-item>
+                </swiper>
             </view>
-           
             <view class="bg-white padding-xs flex" style="width:650rpx">
-                <view class="cu-avatar lg  bf  margin-xs" style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
+                <view class="cu-avatar lg  bf  margin-xs"
+                    style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
                 <view class="margin-xs">
                     <view class="flex">
-                        <view class="cu-tag bg-red radis sm">PLUS</view> 
-                        <view class="text-red bg-white cu-tag sm">背景墙微定制</view>
+                        <view class="cu-tag bg-red radis sm">PLUS</view>
+                        <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
                     </view>
                     <view class="text-lg text-bold padding-xs">
-                       鱼肚白背景墙
+                        鱼肚白背景墙
                     </view>
                 </view>
             </view>
             <view class=" padding-left-xs padding-bottom-xs padding-left-xs flex solid-bottom" style="width:650rpx">
-                <view class="cu-tag text-pink radius">热门推荐</view>
+                <view class="cu-tag text-orange radius">热门推荐</view>
                 <view class="cu-tag text-orange radius">特惠石材</view>
-                <view class="cu-tag text-cyan radius">热门推荐</view>
+                <view class="cu-tag text-orange  radius">热门推荐</view>
             </view>
             <view class="flex flex-space-between padding">
                 <view>
-                    <text class="text-price text-lg text-bold text-red">500</text>
+                    <text class="text-price text-lg text-bold text-shit ">500</text>
                 </view>
                 <view>
-                    <text class="cuIcon-roundcheckfill text-green"></text>在售
+                    <text class="cuIcon-roundcheckfill text-shit light"></text>在售
                 </view>
             </view>
         </view>
         <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%" >
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-                <swiper-item wx:for="{{swiperList}}" wx:key>
-                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                </swiper-item>
-            </swiper>
+            <view style="width:100%">
+                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
+                    circular="true" autoplay="true" interval="5000" duration="500">
+                    <swiper-item wx:for="{{swiperList}}" wx:key>
+                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                    </swiper-item>
+                </swiper>
             </view>
-           
             <view class="bg-white padding-xs flex" style="width:650rpx">
-                <view class="cu-avatar lg  bf  margin-xs" style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
+                <view class="cu-avatar lg  bf  margin-xs"
+                    style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
                 <view class="margin-xs">
                     <view class="flex">
-                        <view class="cu-tag bg-red radis sm">PLUS</view> 
-                        <view class="text-red bg-white cu-tag sm">背景墙微定制</view>
+                        <view class="cu-tag bg-red radis sm">PLUS</view>
+                        <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
                     </view>
                     <view class="text-lg text-bold padding-xs">
-                       鱼肚白背景墙
+                        鱼肚白背景墙
                     </view>
                 </view>
             </view>
             <view class=" padding-left-xs padding-bottom-xs padding-left-xs flex solid-bottom" style="width:650rpx">
-                <view class="cu-tag text-pink radius">热门推荐</view>
+                <view class="cu-tag text-orange radius">热门推荐</view>
                 <view class="cu-tag text-orange radius">特惠石材</view>
-                <view class="cu-tag text-cyan radius">热门推荐</view>
+                <view class="cu-tag text-orange  radius">热门推荐</view>
             </view>
             <view class="flex flex-space-between padding">
                 <view>
-                    <text class="text-price text-lg text-bold text-red">500</text>
+                    <text class="text-price text-lg text-bold text-shit ">500</text>
                 </view>
                 <view>
-                    <text class="cuIcon-roundcheckfill text-green"></text>在售
+                    <text class="cuIcon-roundcheckfill text-shit light"></text>在售
                 </view>
             </view>
         </view>
         <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%" >
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-                <swiper-item wx:for="{{swiperList}}" wx:key>
-                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                </swiper-item>
-            </swiper>
+            <view style="width:100%">
+                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
+                    circular="true" autoplay="true" interval="5000" duration="500">
+                    <swiper-item wx:for="{{swiperList}}" wx:key>
+                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
+                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                    </swiper-item>
+                </swiper>
             </view>
-           
+
             <view class="bg-white padding-xs flex" style="width:650rpx">
-                <view class="cu-avatar lg  bf  margin-xs" style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
+                <view class="cu-avatar lg  bf  margin-xs"
+                    style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
                 <view class="margin-xs">
                     <view class="flex">
-                        <view class="cu-tag bg-red radis sm">PLUS</view> 
-                        <view class="text-red bg-white cu-tag sm">背景墙微定制</view>
+                        <view class="cu-tag bg-red radis sm">PLUS</view>
+                        <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
                     </view>
                     <view class="text-lg text-bold padding-xs">
-                       鱼肚白背景墙
+                        鱼肚白背景墙
                     </view>
                 </view>
             </view>
             <view class=" padding-left-xs padding-bottom-xs padding-left-xs flex solid-bottom" style="width:650rpx">
-                <view class="cu-tag text-pink radius">热门推荐</view>
+                <view class="cu-tag text-orange radius">热门推荐</view>
                 <view class="cu-tag text-orange radius">特惠石材</view>
-                <view class="cu-tag text-cyan radius">热门推荐</view>
+                <view class="cu-tag text-orange  radius">热门推荐</view>
             </view>
             <view class="flex flex-space-between padding">
                 <view>
-                    <text class="text-price text-lg text-bold text-red">500</text>
+                    <text class="text-price text-lg text-bold text-shit ">500</text>
                 </view>
                 <view>
-                    <text class="cuIcon-roundcheckfill text-green"></text>在售
+                    <text class="cuIcon-roundcheckfill text-shit light"></text>在售
                 </view>
             </view>
         </view>
     </scroll-view>
 </view>
-
 <view class="cu-bar tabbar bg-white foot">
-      <view class="action">
+    <view class="action">
         <navigator url="/pages/index/index" open-type="redirect">
-          <view class="cuIcon-cu-image">
+            <view class="cuIcon-cu-image">
                 <image src="/images/tabbar/basics_cur.png"></image>
             </view>
             <view class="text-shit">首页</view>
         </navigator>
-      </view>
-      <view class="action">
+    </view>
+    <view class="action">
         <navigator url="/pages/category/index" open-type="redirect">
-              <view class="cuIcon-cu-image">
+            <view class="cuIcon-cu-image">
                 <image src="/images/tabbar/component.png"></image>
-              </view>
-              <view class="text-gray">分类</view>
-            </navigator>
-      </view>
-      <view class="action">
+            </view>
+            <view class="text-gray">分类</view>
+        </navigator>
+    </view>
+    <view class="action">
         <navigator url="/pages/user/index" open-type="redirect">
-          <view class="cuIcon-cu-image">
-              <image src="/images/tabbar/about.png"></image>
-              <view class="cu-tag badge"></view>
-          </view>
-          <view class="text-gray">我的</view>
+            <view class="cuIcon-cu-image">
+                <image src="/images/tabbar/about.png"></image>
+                <view class="cu-tag badge"></view>
+            </view>
+            <view class="text-gray">我的</view>
         </navigator>
     </view>
 </view>

@@ -69,8 +69,8 @@
         <image src="../../images/stop.png" class='panorama-play'></image>
         </view>
     </view>
-    <view class='product-intro' id="past1">
-      <view class='title'>产品介绍</view>
+    <view class='product-intro ' id="past1">
+      <view class='title shadow-warp'>产品介绍</view>
       <view class='conter'>
         <template is="wxParse" data="{{wxParseData:description.nodes}}" />
       </view>

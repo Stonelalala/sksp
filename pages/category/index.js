@@ -9,7 +9,12 @@ Page({
     MainCur: 0,
     VerticalNavTop: 0,
     list: [],
-    load: true
+    load: true,
+    swiperList:[
+      'http://wechat.stonemei.com/f4b8f202009091636305603.jpg',
+      'http://wechat.stonemei.com/55597202009091640438869.jpg',
+      'http://wechat.stonemei.com/3cc9c202009091630313562.jpg'
+    ]
   },
   onLoad() {
     wx.showLoading({
