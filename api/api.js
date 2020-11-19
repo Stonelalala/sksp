@@ -196,3 +196,9 @@ export function getCity() {
 export function getPoster(){
   return request.get('poster', {}, {noAuth: true});
 }
+/**
+ * 获取特价推荐
+ */
+export function getBenefit(){
+  return request.get('benefit',{},{noAuth:true});
+}

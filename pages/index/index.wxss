@@ -6,3 +6,8 @@
 .flex-space-between{
   justify-content: space-between;
 }
+.menu-position{
+  position: absolute;
+  top:-25rpx;
+  width:690rpx;
+}

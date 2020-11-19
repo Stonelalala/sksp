@@ -12,7 +12,7 @@
     </view>
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索图片、文章、视频" model:value="{{keyword}}" confirm-type="search"></input>
+      <input type="text" placeholder="搜索案例" model:value="{{keyword}}" confirm-type="search"></input>
     </view>
     <view class="action">
         <text class="text-shit" bindtap="search">搜索</text>   

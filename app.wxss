@@ -22,3 +22,6 @@
 .bg-shit{
   background-color: #aa9377;
 }
+.bg-gray-index{
+  background-color: #efefef;
+}

@@ -22,26 +22,24 @@
             <text class="text-shit">搜索</text>
         </view>
     </view>
-    <view style="background-color:white;">
-        <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true"
-            autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3"
-            indicator-active-color="#aa9377">
-            <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
-                <view class="swiper-item">
-                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
-                        objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                </view>
+    <view class="bg-gray">
+        <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+            <swiper-item wx:for="{{swiperList}}" wx:key>
+                <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+                <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
             </swiper-item>
         </swiper>
     </view>
-    <view class="cu-list shadow shadow-lg grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
-        <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
+    <view  style="position:relative;height:192rpx;">
+        <view class=" radius shadow-warp menu-position margin-left margin-right cu-list  grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+            <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<gridCol*2}}">
             <view class="cuIcon-{{item.icon}} text-{{item.color}}">
             </view>
             <text class="text-shit">{{item.name}}</text>
         </view>
     </view>
+    </view>
+   
 
     <view class="cu-bar bg-white">
         <view class="action sub-title">
@@ -136,16 +134,9 @@
         品质与设计经过业主验证的精选背景墙
     </view>
     <scroll-view scroll-x="true" scroll-y="false" enable-flex="ture" class="flex padding-right-sm">
-        <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%">
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
-                    circular="true" autoplay="true" interval="5000" duration="500">
-                    <swiper-item wx:for="{{swiperList}}" wx:key>
-                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
-                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                    </swiper-item>
-                </swiper>
+        <view class="margin-sm  shadow-warp " style="width:650rpx" wx:for="{{benefit}}" bindtap="goodsDetail" data-id="{{item.id}}">
+            <view style="width:100%" class="padding-xs">
+                 <image src="{{item.image}}" mode="aspectFill"></image>
             </view>
             <view class="bg-white padding-xs flex" style="width:650rpx">
                 <view class="cu-avatar lg  bf  margin-xs"
@@ -156,7 +147,7 @@
                         <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
                     </view>
                     <view class="text-lg text-bold padding-xs">
-                        鱼肚白背景墙
+                        {{item.store_name}}
                     </view>
                 </view>
             </view>
@@ -167,90 +158,15 @@
             </view>
             <view class="flex flex-space-between padding">
                 <view>
-                    <text class="text-price text-lg text-bold text-shit ">500</text>
+                    <text class="text-price text-lg text-bold text-shit ">{{item.ot_price}}/{{item.unit_name}}</text>
                 </view>
                 <view>
                     <text class="cuIcon-roundcheckfill text-shit light"></text>在售
                 </view>
             </view>
         </view>
-        <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%">
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
-                    circular="true" autoplay="true" interval="5000" duration="500">
-                    <swiper-item wx:for="{{swiperList}}" wx:key>
-                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
-                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                    </swiper-item>
-                </swiper>
-            </view>
-            <view class="bg-white padding-xs flex" style="width:650rpx">
-                <view class="cu-avatar lg  bf  margin-xs"
-                    style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
-                <view class="margin-xs">
-                    <view class="flex">
-                        <view class="cu-tag bg-red radis sm">PLUS</view>
-                        <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
-                    </view>
-                    <view class="text-lg text-bold padding-xs">
-                        鱼肚白背景墙
-                    </view>
-                </view>
-            </view>
-            <view class=" padding-left-xs padding-bottom-xs padding-left-xs flex solid-bottom" style="width:650rpx">
-                <view class="cu-tag text-orange radius">热门推荐</view>
-                <view class="cu-tag text-orange radius">特惠石材</view>
-                <view class="cu-tag text-orange  radius">热门推荐</view>
-            </view>
-            <view class="flex flex-space-between padding">
-                <view>
-                    <text class="text-price text-lg text-bold text-shit ">500</text>
-                </view>
-                <view>
-                    <text class="cuIcon-roundcheckfill text-shit light"></text>在售
-                </view>
-            </view>
-        </view>
-        <view class="margin-sm  shadow-warp " style="width:650rpx">
-            <view style="width:100%">
-                <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true"
-                    circular="true" autoplay="true" interval="5000" duration="500">
-                    <swiper-item wx:for="{{swiperList}}" wx:key>
-                        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-                        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}"
-                            objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-                    </swiper-item>
-                </swiper>
-            </view>
-
-            <view class="bg-white padding-xs flex" style="width:650rpx">
-                <view class="cu-avatar lg  bf  margin-xs"
-                    style="background-image:url(http://wechat.stonemei.com/3b42b202006081521509665.png);"></view>
-                <view class="margin-xs">
-                    <view class="flex">
-                        <view class="cu-tag bg-red radis sm">PLUS</view>
-                        <view class="text-shit bg-white cu-tag sm">背景墙微定制</view>
-                    </view>
-                    <view class="text-lg text-bold padding-xs">
-                        鱼肚白背景墙
-                    </view>
-                </view>
-            </view>
-            <view class=" padding-left-xs padding-bottom-xs padding-left-xs flex solid-bottom" style="width:650rpx">
-                <view class="cu-tag text-orange radius">热门推荐</view>
-                <view class="cu-tag text-orange radius">特惠石材</view>
-                <view class="cu-tag text-orange  radius">热门推荐</view>
-            </view>
-            <view class="flex flex-space-between padding">
-                <view>
-                    <text class="text-price text-lg text-bold text-shit ">500</text>
-                </view>
-                <view>
-                    <text class="cuIcon-roundcheckfill text-shit light"></text>在售
-                </view>
-            </view>
-        </view>
+   
+       
     </scroll-view>
 </view>
 <view class="cu-bar tabbar bg-white foot">

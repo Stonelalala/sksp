@@ -1,5 +1,5 @@
 <!--pages/category/index.wxml-->
-<view style="margin-bottom:50px;" class="bg-white">
+<view style="margin-bottom:50px;" >
     <cu-custom bgColor="bg-black" isCustom="{{false}}">
         <view slot="content">个人中心</view>
     </cu-custom>
@@ -12,6 +12,26 @@
             {{userInfo.nickname}}
           </view>
         </view>
+    </view>
+    <view class="grid col-3 padding-sm">
+      <view class="padding-sm" >
+        <view class="bg-white  padding radius text-center shadow-blur">
+          <view class="text-lg"><text class="cuIcon-favor lg text-shit"></text></view>
+          <view class="margin-top-sm text-Abc">我的收藏</view>
+        </view>
+      </view>
+      <view class="padding-sm" >
+        <view class="bg-white  padding radius text-center shadow-blur">
+          <view class="text-lg"><text class="cuIcon-servicefill lg text-shit"></text></view>
+          <view class="margin-top-sm text-Abc">联系客服</view>
+        </view>
+      </view>
+      <view class="padding-sm" >
+        <view class="bg-white  padding radius text-center shadow-blur">
+          <view class="text-lg"><text class="cuIcon-question lg text-shit"></text></view>
+          <view class="margin-top-sm text-Abc">关于我们</view>
+        </view>
+      </view>
     </view>
 </view>
 <view class="cu-bar tabbar bg-white foot">

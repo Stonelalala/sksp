@@ -1,4 +1,5 @@
 // pages/index/index.js
+import {getBenefit} from '../../api/api.js'
 const app = getApp();
 Page({
 
@@ -37,7 +38,8 @@ Page({
       name: '轻奢'
     }],
     gridCol:3,
-    skin: false
+    skin: false,
+    benefit:[]
   },
 
   /**
@@ -47,8 +49,21 @@ Page({
     this.setData({
       CustomBar:app.globalData.CustomBar
     });
-  },
+    let that = this;
+    getBenefit().then(res => {
+      that.setData({
+        benefit:res.data.benefit
+      });
+    }).catch(err => {
 
+    });
+  },
+  goodsDetail:function(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/goods_details/index?id=' + id,
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

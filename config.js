@@ -1,7 +1,7 @@
 module.exports = {
   // 请求域名 格式： https://您的域名
   HTTP_REQUEST_URL:'https://www.stonemei.com:9190',
-  //HTTP_REQUEST_URL:'http://xiaoya.com',
+  // HTTP_REQUEST_URL:'http://xiaoya.com',
   // Socket链接 暂不做配置
   WSS_SERVER_URL:'',
 
